@@ -63,7 +63,7 @@ class ImageManager:
 
     # 添加图片到字典（私有方法）
     def _addImageToDict(self, strPath, append=False):
-        strImageName = strPath.split(os.sep)[-1].split('.')[0]
+        strImageName = os.path.basename(strPath).split('.')[0]
         fileExtension = strPath.lower().split('.')[-1]
 
         if fileExtension == 'tif' or fileExtension == 'tiff':
