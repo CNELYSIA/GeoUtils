@@ -249,8 +249,8 @@ class ImageManager:
                 stitchedImage = future.result()
                 self.dictStitchedImages[stitchedImage.strImageName] = stitchedImage
 
-    # 图像转换为8位无符号整数（公共方法）
-    def toUint8(self, dblPercentile=2):
+    # 图像拉伸（公共方法）
+    def truncatedLinearStretch(self, dblPercentile=2):
         self.dictConvertedImages.clear()  # 清空之前的转换结果
 
         def convertImage(strImgName, objImageData):
@@ -353,12 +353,12 @@ class ImageManager:
     # obj_manager.saveImg('stitched_images', obj_manager.dictStitchedImages, '.jpg', formEE=True)
     # print("Stitched images saved.")
     #
-    # # 6. 转换图像为 8 位无符号整数
-    # obj_manager.toUint8(dblPercentile=2)
+    # # 6. 百分比截断线性拉伸
+    # obj_manager.truncatedLinearStretch(dblPercentile=2)
     # print(f"Converted images: {list(obj_manager.dictConvertedImages.keys())}")
     #
     # # 7. 保存转换后的图像
-    # obj_manager.saveImg('converted_images', obj_manager.dictConvertedImages, '.jpg', formEE=True)
+    # obj_manager.saveImg('converted_images', obj_manager.dictConvertedImages, '.png', formEE=True)
     # print("Converted images saved.")
     #
     # # 8. 赋予地理信息
