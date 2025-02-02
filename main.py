@@ -1,10 +1,16 @@
+import asyncio
 import cv2
 import numpy as np
 from osgeo import gdal
 import os
 from concurrent.futures import ThreadPoolExecutor
-
+from utils.google_downloader import fetchSatelliteData
 gdal.UseExceptions()
+
+def fetchSatelliteDataReturnFileName(intZoomLevel, strRootDirectory, geojsonData, strFileName):
+    asyncio.run(fetchSatelliteData(intZoomLevel, strRootDirectory, geojsonData, strFileName))
+    return strFileName + ".tif"
+
 
 class ImageData:
     def __init__(self, strImageName, npImageData, tupleOriginalShape, prj=None, geoTransform=None, isGdalRead=False):
@@ -364,4 +370,3 @@ class ImageManager:
     # print("Geo-referenced images saved.")
     #
     #
-
